@@ -3,3 +3,8 @@ target/
 .idea/
 *.iml
 .vscode/
+
+# Generated experiment output, not source
+games/
+sample_output/
+*.log
