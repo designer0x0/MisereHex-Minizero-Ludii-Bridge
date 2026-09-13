@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.designer0x0</groupId>
+  <artifactId>miserehex-minizero-ludii-bridge</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <!-- Ludii is not published on Maven Central, so it is vendored under libs/
+         and referenced as a system-scoped dependency. -->
+    <dependency>
+      <groupId>ludii</groupId>
+      <artifactId>ludii</artifactId>
+      <version>1.3.14</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/libs/Ludii-1.3.14.jar</systemPath>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>miserehex-ludii-bridge</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+      </plugin>
+      <!-- Note: exec-maven-plugin's classloader does not reliably pick up
+           system-scoped dependencies (i.e. Ludii.jar), so we run via plain
+           `java -cp` instead - see README. -->
+    </plugins>
+  </build>
+</project>
